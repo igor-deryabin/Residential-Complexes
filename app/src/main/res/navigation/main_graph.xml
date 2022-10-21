@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/fragment_splash">
+
+    <fragment
+        android:id="@+id/fragment_splash"
+        android:name="com.example.buildings.presentation.fragments.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_splashFragment_to_complexesFragment"
+            app:destination="@id/fragment_complexes"
+            app:popUpTo="@id/main_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_complexes"
+        android:name="com.example.buildings.presentation.fragments.complexes.ComplexesFragment"
+        android:label="ComplexesFragment"
+        tools:layout="@layout/fragment_complexes">
+        <action
+            android:id="@+id/action_complexesFragment_to_complexFragment"
+            app:destination="@id/fragment_complex"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment_complex"
+        android:name="com.example.buildings.presentation.fragments.complex.ComplexFragment"
+        android:label="ComplexFragment"
+        tools:layout="@layout/fragment_complex">
+    </fragment>
+</navigation>

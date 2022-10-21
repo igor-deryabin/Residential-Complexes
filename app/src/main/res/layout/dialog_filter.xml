@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/filter_title"
+        android:textColor="@color/dark"
+        android:textSize="22sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_title_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/filter_area_title"
+        android:textColor="@color/dark"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_areas"
+        app:layout_constraintTop_toTopOf="@+id/spinner_areas"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_areas"
+        app:tint="@color/dark" />
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/grey"
+        app:layout_constraintStart_toStartOf="@+id/spinner_areas"
+        app:layout_constraintEnd_toEndOf="@+id/spinner_areas"
+        app:layout_constraintBottom_toBottomOf="@+id/spinner_areas"/>
+
+    <androidx.appcompat.widget.AppCompatSpinner
+        android:id="@+id/spinner_areas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:spinnerMode="dropdown"
+        android:background="@android:color/transparent"
+        android:popupBackground="@drawable/bg_spinner_popup"
+        tools:listitem="@layout/item_spinner_area"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_area"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_title_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:text="@string/filter_cost_title"
+        android:textColor="@color/dark"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_areas"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/price_range"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ubuntu_regular"
+        android:textColor="@color/dark"
+        android:textSize="16sp"
+        app:layout_constraintTop_toTopOf="@+id/tv_title_cost"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_title_cost"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/range_seek_bar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        app:labelBehavior="gone"
+        app:tickVisible="false"
+        app:trackHeight="3dp"
+        app:trackColorActive="@color/blue"
+        app:trackColorInactive="@color/grey"
+        app:thumbColor="@color/blue"
+        app:minSeparation="0dp"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_cost"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_price_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        tools:text="@string/filter_cost_start"
+        app:layout_constraintTop_toBottomOf="@+id/range_seek_bar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_price_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/ubuntu_light"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        tools:text="@string/filter_cost_end"
+        app:layout_constraintTop_toBottomOf="@+id/range_seek_bar"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_clear"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="14dp"
+        android:text="@string/filter_negative_button"
+        android:textColor="@color/dark"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/ubuntu_medium"
+        app:backgroundTint="@color/grey"
+        app:elevation="8dp"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_done"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price_start"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_done"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="14dp"
+        android:text="@string/filter_positive_button"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:fontFamily="@font/ubuntu_medium"
+        app:backgroundTint="@color/blue"
+        app:elevation="8dp"
+        app:cornerRadius="8dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_price_end"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

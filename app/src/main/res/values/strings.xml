@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Residential Complexes</string>
+
+    <string name="complexes_full_empty">Жилые комплексы еще не добавлены</string>
+    <string name="complexes_filter_empty">Жилые комплексы с параметрами фильтра еще не добавлены</string>
+
+    <string name="filter_title">Фильтр</string>
+    <string name="filter_area_title">Район</string>
+    <string name="filter_area_label">Выберите район</string>
+    <string name="filter_cost_title">Стоимость</string>
+    <string name="filter_cost_start">от %s млн ₽</string>
+    <string name="filter_cost_end">до %s млн ₽</string>
+    <string name="filter_positive_button">Применить</string>
+    <string name="filter_negative_button">Очистить</string>
+
+    <string name="currency_rub">млн ₽</string>
+    <string name="error_empty">Поле не может быть пустым</string>
+
+    <string name="complex_title_add">Добавление комплекса</string>
+    <string name="complex_title_edit">Редактирование комплекса</string>
+    <string name="complex_name_label">Наименование</string>
+    <string name="complex_name_hint">Введите наименование комплекса</string>
+    <string name="complex_area_label">Расположение</string>
+    <string name="complex_area_hint">Введите расположение комплекса</string>
+    <string name="complex_city_label">Город</string>
+    <string name="complex_city_hint">Введите город</string>
+    <string name="complex_metro_label">Метро</string>
+    <string name="complex_metro_hint">Ближайшая станция метро</string>
+    <string name="complex_year_label">Год сдачи</string>
+    <string name="complex_year_hint">2022</string>
+    <string name="complex_floors_label">Этажность</string>
+    <string name="complex_floors_hint">7</string>
+    <string name="complex_cost_label">Стоимость (млн ₽)</string>
+    <string name="complex_cost_hint">2.5</string>
+    <string name="complex_buildings_count_label">Корпусов</string>
+    <string name="complex_buildings_count_hint">1</string>
+    <string name="complex_parking_label">Паркинг</string>
+    <string name="complex_parking_yes">Есть</string>
+    <string name="complex_parking_no">Отсутствует</string>
+    <string name="complex_rented_label">Комплекс сдан</string>
+    <string name="complex_rented_yes">Да</string>
+    <string name="complex_rented_no">Нет</string>
+</resources>
