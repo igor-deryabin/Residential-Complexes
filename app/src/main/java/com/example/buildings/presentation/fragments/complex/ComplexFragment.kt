@@ -2,6 +2,9 @@ package com.example.buildings.presentation.fragments.complex
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -11,22 +14,33 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.app.ActivityCompat
-import androidx.core.net.toUri
+import androidx.core.content.FileProvider
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.example.buildings.BuildConfig
 import com.example.buildings.R
 import com.example.buildings.databinding.FragmentComplexBinding
 import com.example.buildings.domain.data.Complex
 import com.example.buildings.domain.data.ViewMode
 import com.example.buildings.utils.EXTERNAL_STORAGE_PERMISSIONS_REQUIRED
 import com.example.buildings.utils.Result
+import com.example.buildings.utils.createImageFile
 import com.example.buildings.utils.extension.hasPermissions
 import com.example.buildings.utils.extension.hideKeyboard
 import com.example.buildings.utils.extension.longToast
 import com.example.buildings.utils.getFileFromUri
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import net.yslibrary.android.keyboardvisibilityevent.KeyboardVisibilityEvent
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
+
 
 class ComplexFragment: Fragment() {
 
@@ -305,7 +319,9 @@ class ComplexFragment: Fragment() {
         complex?.let {
             binding.apply {
                 if (it.image.isNotEmpty()) {
-                    ivImage.setImageURI(it.image.toUri())
+                    Glide.with(requireContext())
+                        .load(File(it.image))
+                        .into(ivImage)
                 }
                 etName.setText(it.name)
                 etArea.setText(it.area)
@@ -347,10 +363,34 @@ class ComplexFragment: Fragment() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             when (result.resultCode) {
                 Activity.RESULT_OK -> {
-                    val uri = result.data!!.data
-                    val tempFile = getFileFromUri(requireContext(), uri!!)
-                    imagePath = tempFile.path
-                    binding.ivImage.setImageURI(uri)
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        val uri = result.data!!.data
+                        val newFile = createImageFile(requireContext())
+                        val uriPhoto = FileProvider.getUriForFile(
+                            requireContext(),
+                            "${BuildConfig.APPLICATION_ID}.provider", newFile
+                        )
+                        val imageOutStream: OutputStream = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            requireContext().contentResolver.openOutputStream(uriPhoto) ?: FileOutputStream(newFile)
+                        } else {
+                            FileOutputStream(newFile)
+                        }
+                        val tempFile = getFileFromUri(requireContext(), uri!!)
+                        val picBitmap = BitmapFactory.decodeFile(tempFile.absolutePath)
+                        try {
+                            picBitmap.compress(Bitmap.CompressFormat.JPEG, 100, imageOutStream)
+                        } finally {
+                            imageOutStream.close()
+                            imagePath = newFile.path
+                        }
+
+                        lifecycleScope.launch(Dispatchers.Main) {
+                            imagePath = newFile.path
+                            binding.ivImage.setImageURI(uri)
+                        }
+                    }
+
+
                 }
                 Activity.RESULT_CANCELED -> {}
             }

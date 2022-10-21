@@ -11,10 +11,10 @@ interface ComplexesDao {
     fun getAreas() : Flow<List<String>>
 
     @Query("SELECT MIN(cost) FROM complexes")
-    fun getMinCost() : Flow<Double>
+    fun getMinCost() : Flow<Double?>
 
     @Query("SELECT MAX(cost) FROM complexes")
-    fun getMaxCost() : Flow<Double>
+    fun getMaxCost() : Flow<Double?>
 
     @Query("SELECT * FROM complexes")
     fun getAllComplexes() : Flow<List<Complex>>

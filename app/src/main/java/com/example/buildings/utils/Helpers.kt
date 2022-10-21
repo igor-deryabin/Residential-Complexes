@@ -3,9 +3,12 @@ package com.example.buildings.utils
 import android.Manifest
 import android.content.Context
 import android.net.Uri
+import android.os.Environment
 import java.io.File
+import java.io.IOException
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import java.text.SimpleDateFormat
 import java.util.*
 
 val EXTERNAL_STORAGE_PERMISSIONS_REQUIRED = arrayOf(
@@ -24,4 +27,15 @@ fun Double.toMoney(): String {
 
 fun getFileFromUri(context: Context, uri: Uri): File {
     return File(RealPathUtil.getRealPath(context, uri)!!)
+}
+
+@Throws(IOException::class)
+fun createImageFile(context: Context): File {
+    var fileName = ""
+    val suffix = ".jpg"
+    val timeStamp = SimpleDateFormat("ddMMyyyy_HHmmssSSS", Locale.ENGLISH).format(Date())
+    fileName = timeStamp
+
+    val storageDir: File? = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+    return File.createTempFile(fileName, suffix, storageDir)
 }

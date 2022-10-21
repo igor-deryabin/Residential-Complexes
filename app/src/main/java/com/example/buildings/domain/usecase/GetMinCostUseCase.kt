@@ -8,6 +8,6 @@ class GetMinCostUseCase(
     private val repository: ComplexesRepository
 ) {
     operator fun invoke(): Flow<Double> {
-        return repository.getMinCost().map { it }
+        return repository.getMinCost().map { it ?: 0.0 }
     }
 }

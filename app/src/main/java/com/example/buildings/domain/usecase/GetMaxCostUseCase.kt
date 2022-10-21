@@ -8,6 +8,6 @@ class GetMaxCostUseCase(
     private val repository: ComplexesRepository
 ) {
     operator fun invoke(): Flow<Double> {
-        return repository.getMaxCost().map { it }
+        return repository.getMaxCost().map { it ?: 0.0 }
     }
 }

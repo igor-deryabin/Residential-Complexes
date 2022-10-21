@@ -15,13 +15,14 @@
         android:layout_height="200dp"
         android:foreground="@drawable/ripple_rectangle_12">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/grey"
             android:scaleType="centerCrop"
-            tools:src="@drawable/gp_spot2"/>
+            tools:src="@drawable/gp_spot2"
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView12"/>
 
         <View
             android:layout_width="match_parent"

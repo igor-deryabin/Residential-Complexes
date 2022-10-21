@@ -20,7 +20,6 @@ open class ComplexVH(
             tvArea.text = item.area
 
             if (item.image.isNotEmpty()) {
-                ivMain.setImageURI(item.image.toUri())
                 Glide.with(context)
                     .load(File(item.image))
                     .into(ivMain)

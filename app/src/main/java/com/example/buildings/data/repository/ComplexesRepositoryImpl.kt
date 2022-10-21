@@ -17,11 +17,11 @@ class ComplexesRepositoryImpl(
         return dao.getAreas()
     }
 
-    override fun getMinCost(): Flow<Double> {
+    override fun getMinCost(): Flow<Double?> {
         return dao.getMinCost()
     }
 
-    override fun getMaxCost(): Flow<Double> {
+    override fun getMaxCost(): Flow<Double?> {
         return dao.getMaxCost()
     }
 

@@ -13,6 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
         android:theme="@style/Theme.ConstructionObjects"
+        android:requestLegacyExternalStorage="true"
+        android:hardwareAccelerated="true"
+        android:largeHeap="true"
         tools:targetApi="s">
         <activity
             android:name=".presentation.activity.MainActivity"

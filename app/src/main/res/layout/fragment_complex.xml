@@ -539,6 +539,7 @@
                             android:layout_marginStart="8dp"
                             android:checked="false"
                             android:visibility="gone"
+                            tools:visibility="visible"
                             android:thumb="@drawable/switch_thumb"
                             android:layout_marginEnd="16dp"/>
 
@@ -590,8 +591,7 @@
 
                     <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp">
+                        android:layout_height="wrap_content">
 
                         <androidx.appcompat.widget.SwitchCompat
                             android:id="@+id/switch_rented"
@@ -600,6 +600,7 @@
                             app:track="@drawable/switch_track"
                             android:checked="false"
                             android:visibility="gone"
+                            tools:visibility="visible"
                             android:thumb="@drawable/switch_thumb"
                             android:layout_marginEnd="16dp"/>
 
@@ -608,6 +609,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
+                            android:layout_marginStart="8dp"
                             android:visibility="gone">
 
                             <TextView
